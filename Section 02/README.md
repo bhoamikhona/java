@@ -24,6 +24,9 @@
       - [JIT Compilation Example](#jit-compilation-example)
     - [An Overview of Java SE](#an-overview-of-java-se)
     - [Java SE Release Cycles \& Release History](#java-se-release-cycles--release-history)
+    - [Installing JDK 17 on Windows](#installing-jdk-17-on-windows)
+    - [Installing Java on Mac](#installing-java-on-mac)
+    - [Installing Java on Linux](#installing-java-on-linux)
   - [Author](#author)
 
 ## Lessons Learned
@@ -705,6 +708,22 @@ public class Math {
 - That's about it.
 - Next, we will install one of the latest versions of a Java SE implementation.
 - We will install a JDK and we will get started.
+
+### Installing JDK 17 on Windows
+
+- The JDK gets installed in C Drive => Program Files => Java => jdk-21
+- jdk-21 is the directory of your JDK.
+- If we go inside jdk-21 => bin, you will see all the executables, like the Java compiler, Java interpreter, and all the development tools that we need.
+- Some of the executables that we have in the bin folder are:
+  - javac - That's for comiling our programs
+  - java - Which is the Java interpreter so, it is anothe executable. This is for running our programs.
+  - javap - It is called as a disassembler. If you want to look at the bytecode that your compiler generates; your compiler generates a `.class` file which has Java bytecode - if you want examine that, you would use this tool.
+  - jar - This tool is used for packaging your software. So, once you have your software, you can create something called as a jar file. So, that's a unit of release and that jar file, you can give it to your clients or partners.
+- So, these are some of the development tools that you have in the bin directory.
+
+### Installing Java on Mac
+
+### Installing Java on Linux
 
 ## Author
 
