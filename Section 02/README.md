@@ -28,6 +28,9 @@
     - [Installing Java on Mac](#installing-java-on-mac)
     - [Installing Java on Linux](#installing-java-on-linux)
     - [Setting Classpath Environment Variable](#setting-classpath-environment-variable)
+    - [Writing First Java Program + Demo](#writing-first-java-program--demo)
+      - [HelloWorld Program](#helloworld-program)
+      - [Main Method](#main-method)
   - [Author](#author)
 
 ## Lessons Learned
@@ -762,6 +765,149 @@ public class Math {
 - So, Java interpreter would look for the program in the current directory.
 - But, if classpath is there, then it overrides this default property and `.` needs to be present if Java interpreter has to search in the current directory.
 - Go through the rest of the lesson to understand how to set the classpath.
+
+### Writing First Java Program + Demo
+
+- Let's now go ahead and write our first Java program.
+- But, before doing that, let's take a quick look at the structure of a Java program.
+- ![java-program-structure-1](https://github.com/user-attachments/assets/4aee1f91-de12-4340-9284-8b7abe607648)
+- Java programs consist of classes.
+- That is, when you write Java program, you write at least one class.
+- From a class, we can create one or more objects.
+- An object is a central concept in object-oriented programming (OOP), and we will look at object and OOP in the next section.
+- For now, let's just look at what constitutes a class.
+- What we see here (in the diagram above) are the elements or the program constructs in a class.
+- We have variable declarations, constructors, methods, and nested classes.
+- Variables, constructors, and methods will be introduced in the next section, while nested classes will be introduced towards the later part of the course.
+- Typically, HelloWorld program is the first program that is written when we are learning a new programming language, and so let's do the same.
+- That is, we will write a class called `HelloWorld`, and this class will have a single method which prints the text "Hello, World!".
+- Let's look at the steps we are going to follow for this.
+- ![first-java-program-1](https://github.com/user-attachments/assets/41a33891-b890-452f-8dba-3fa2ce6c946b)
+  - We will first create this directory structure:
+    - `javaindepth\src\com\semanticsquare\basics`
+    - `javaindepth` is the root directory, and it contains other sub-directories, ending with the directory called `basics`.
+    - The `HelloWorld` program we will write will go into the basics directory, and many of the Java programs we write in this course will be stored somewhere within the `javaindepth` directory.
+    - For now, let's not worry about this directory structure, and it will be clear very soon.
+  - Next we will write the `HelloWorld.java` in a text editor, and you can use any text editor like Notepad, it is upto you.
+    - Note that we will use text editor for approximately only the first 20% of the course, and later we will switch to Eclipse, which is an IDE.
+    - IDE stands for Integrated Development Environment i.e. it is an environment where a lot of development tools are integrated so that we can program effectively.
+    - Eclipse is used by millions of professional developers, and it is much more productive to program using an IDE rather than using regular text editors.
+    - The reason we are initially using a regular text editor is because, at least for those of you who are completely new to programming, it is important to actually compile and execute programs from the command line.
+    - If we use an IDE like Eclipse, compilation happens automatically, and there are also many details an IDE hides.
+    - So, if you start off with something like Eclipse, you may never know how things work behind the scenes.
+    - So, we will use a regular text editor initially, and then switch over to Eclipse.
+    - Now, when we do the switch over to Eclipse, you will also see how easy and productive it is to program using Eclipse.
+    - There is also a very solid Eclipse tutorial that comes later, and it will teach you on how you can use Eclipse at a professional level.
+    - It is a very nice tutorial but, if you are familiar with Eclipse, you can also use it right from this lesson itself.
+    - Moreover, as with the text editors, you are free to use other IDEs like IntelliJ or NetBeans.
+    - So, it need not be Eclipse.
+  - Now, once we write our program, we will compile and run it.
+
+#### HelloWorld Program
+
+- Every class begins with the keyword `class`, which is a reserved keyword in Java.
+- The keyword is followed by the name of the class, which is "HelloWorld" in our case.
+- And every class has an opening and closing brace brackets.
+
+```java
+class HelloWorld {}
+```
+
+- So, this is the class declaration.
+- Within our class, let's just have one method, and it is called `main` method.
+
+```java
+class HelloWorld {
+  public static void main(String[] args) {}
+}
+```
+
+- The main method also has the opening and closing braces.
+- `main` is the name of the method.
+- `String[] args` is the method parameter, we will look at that later, but it is an array of strings.
+- Arrays and strings will be discussed later in the course.
+- `void` is the method output. In this case it is called as `void` but, let's not worry about that for now.
+- So, our `main` method has both, input and output.
+- `public` and `static`, both of them are called as modifiers.
+- `public` is called as an <ins>access modifier</ins>. There are other access modifiers too, but we will learn them later in the course.
+- `static` is just a type of a method, and we will discuss that also later.
+- Let's just have one single statement within this class, and it is going to print the string "Hello, World!".
+
+```java
+class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}
+```
+
+- Every statement ends with a semicolon. That is just how it is in Java.
+- So, this is our `HelloWorld` program.
+- Let's save it as `HelloWorld.java` in the basics folder.
+- To compile and run it, we will go to the command prompt and cd into the relative directory.
+- To compile we will use the `javac HelloWorld.java` command.
+- Once compiled, the `HelloWorld.class` file has been generated in the same directory as the `HelloWorld.java` file.
+- This `.class` file has the Java bytecodes.
+- We know that this `.class` file can be executed on any platform, whether it is Linux or Mac or Windows - and that's the advantage of Java, which is platform independence.
+- Let's just go ahead and execute it.
+- For that, we use the Java interpreter: `java HelloWorld` (this is nothing but HelloWorld.class)
+- So, when we hit enter, it is going to print the "Hello, World!" message.
+- At this point we compiled and ran our first program.
+- Now let's go back to our code.
+- Note that the file name is `HelloWorld` and the class name is also `HelloWorld`; and it need not be same.
+- So, if you want we can change it.
+- But, you shouldn't do that.
+- Typically, we all have the same name.
+- The file name and class name are the same.
+- Generally, we also have the `public` modifier in front of `class`, like so:
+
+```java
+public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}
+```
+
+- But if you do that, then the compiler requires that both the file name and the class name are same. Otherwise, it will throw an error.
+- We can also have more than one class in one particular file.
+- Normally, you wouldn't do that but, for learning purposes, let's just do that here.
+
+```java
+public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}
+
+class GoodByeWorld {
+  public static void main(String[] args) {
+    System.out.println("GoodBye, World!");
+  }
+}
+```
+
+- Now we have two classes here in the same file, `HelloWorld`, and `GoodByeWorld`, and both of them have a `main` method and both of them are printing something.
+- Now if you check your directory, it created two new class files viz HelloWord and GoodByeWorld.
+- So, the compiler is going to scan this particular file and create separate class files for both of them.
+- But generally, you will never have more than one class in a single file.
+- There is something called nested classes where within one class you can have nested classes, you can have other classes nested within one class.
+- We will see that later in the course, but normally, you wouldn't have a class externally, the way we have here.
+- Probably if you want to do some quick prototyping or if you want to have multiple classes, you might do that, but generally, you will not do this.
+
+#### Main Method
+
+- Now, let's understand/discuss a little bit more about the `main()` method.
+- ![main-method-1](https://github.com/user-attachments/assets/48eb9c54-0e04-4e0d-8d92-c92ff3f00ee8)
+- If you want to run a class from the command line, you need to have a main method in that class.
+- `main()` method is where your program starts running.
+- That is, on executing `java HelloWorld`, JVM first loads the bytecodes that are associated with `HelloWorld.class` into the memory and then it invokes its `main()` method.
+- `main()` method must be declared as `public`, `static`, and `void`.
+- `public` keyword is required for JVM to invoke it, otherwise the program will compile but not execute.
+- From the `main()` method, we typically invoke other classes that constitute the software, and those other classes need not have a `main()` method.
+- So, it is just the class which is being executed from the command line must have a `main()` method.
+- Program ends when the `main()` method ends.
+- That's about it.
 
 ## Author
 
