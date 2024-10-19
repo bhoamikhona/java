@@ -37,6 +37,8 @@
   - [Table of Content](#table-of-content)
   - [Lessons Learned](#lessons-learned)
     - [Classes \& Objects](#classes--objects)
+    - [Demo: Absolute Java Basics](#demo-absolute-java-basics)
+      - [print vs println](#print-vs-println)
   - [Author](#author)
 
 ## Lessons Learned
@@ -217,6 +219,50 @@ class StudentTest {
 - Also note that in real Object Oriented software, you would have tons of objects communicating with each other, and the way one object communicates with other is by invoking a method of the object and passing any necessary data as input.
 - So, that's about it.
 - Hopefully you now understand what a class and object is, how they represent real world entities like student, and how they can be created in Java.
+
+### Demo: Absolute Java Basics
+
+- Before we start looking at features, such as variables and methods, in this lesson, let's look at some really absolute basics of Java language.
+- Here is what we are going to look at in this particular lesson:
+
+  - Naming rules for classes/methods/variables
+    - First character of a class/method/variable name has to be either a letter, or an underscore, or $
+      - If you have anything else then you will get an error.
+    - Remaming characters can be a letter, underscore, $, or numbers.
+    - We cannot use any reserved keywords.
+    - We cannot have duplicate names.
+    - We also cannot have duplicate methods.
+  - Java is case-sensitive
+  - Printing to console
+    - `System.out.println()`
+    - `System.out.print()`
+    - `\n`
+  - Comments or Disabling Code
+    - Single line comments
+    - Block Quotes
+  - Arithmetic Operations
+    - `+`
+    - `-`
+    - `*`
+    - `/`
+    - `%`
+
+#### print vs println
+
+| `print()`                                                              | `println()`                                |
+| ---------------------------------------------------------------------- | ------------------------------------------ |
+| Does not add any new line                                              | Adds a new line after message is displayed |
+| Printing begins in the same line                                       | Printing begins in the next line           |
+| Compatible only with argument operations, or else it is a syntax error | Is operable with arguments                 |
+
+> [!IMPORTANT]
+>
+> If you were to use `println` followed by `print`, the `print` statement will appear on the next line, but if the `print` statement comes before the `println`, the statement will stay on the same line.
+
+- `System` is just a class in Java library, and `System` has this variable called `out`.
+- So, we are saying `System.out` and that's how we are accessing the `out` variable.
+- This variable corresponds to an object and that object has these methods `print` and `println`.
+- That's how we are printing the strings.
 
 ## Author
 
