@@ -5,6 +5,7 @@
 ## Agenda
 
 - Let's look at the agenda for this section.
+- ![s-3-intro](https://github.com/user-attachments/assets/d1e2bd18-0cf5-41ff-b503-b546593aced0)
 - Java is an <ins>object-oriented programming language</ins> and so, we begin the section by discussing about <ins>object-oriented environment</ins> and its use in modeling real-world scenarios.
 - For this we will introduce Java's two of the most fundamental object-oriented concepts called <ins>class</ins> and <ins>object</ins>.
 - We'll understand this concepts conceptually and also see how they can be created in Java.
