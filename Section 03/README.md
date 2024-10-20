@@ -41,6 +41,7 @@
       - [print vs println](#print-vs-println)
     - [Identifiers - A Note on Naming Rules](#identifiers---a-note-on-naming-rules)
     - [Variables: Introduction](#variables-introduction)
+    - [Demo: Declaring \& Re-intializing Variables](#demo-declaring--re-intializing-variables)
   - [Author](#author)
 
 ## Lessons Learned
@@ -417,6 +418,376 @@ count = x + y; // expression
 - A variable is simply a container, and what it holds depends on its data type.
 - Keep in mind that Java is statically typed language.
 - Next, we will write a simply program and test everything we have seen in this lesson.
+
+### Demo: Declaring & Re-intializing Variables
+
+- In this lesson, let's go ahead and create a new clas, and then we will declare a few variables, and we will also re-initialize those variables.
+- So, we will declare teh variables with both, literals as well as expressions and we will also re-initialize those variables.
+- So, that's what we have seen in the previous lesson, and in this lesson we are going to test them out.
+- So, in this lesson we will create a new class called Student; and as we progress through this section, as we learn new things like the primitive variables and so on, we will also extend this particular class.
+- Let's create our `Student` calss.
+
+```java
+public class Student {}
+```
+
+- Let's create a new variable called `id`.
+
+> [!NOTE]
+>
+> Identation should be of 4 spaces.
+
+- Later we will also talk about coding conventions, and there we will also discuss about indentation.
+- Indentations help in readability of the code.
+- So, let's create our first variable called `id` of type `int` and first, let's just look at literal initialization.
+
+```java
+public class Student {
+  int id = 1000;
+}
+```
+
+- Let's also write a simple method called `compute()` and all it does is it prints the variable.
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    System.out.println(id);
+  }
+}
+```
+
+- Now let's write our `main()` method otherwise we cannot run this.
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    System.out.println(id);
+  }
+
+  public static void main(String[] args) {}
+}
+```
+
+- THe first thing that we will do is we will create an object of the `Student` class.
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    System.out.println(id);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+  }
+}
+```
+
+- Now if we compile and run it, it still won't print anything and that's because a `Student` object has been created but, we will still did not invoke the `compute()` method.
+- So, let's now invoke the method on the student object.
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    System.out.println(id);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it will print the value of `id`.
+- So, that's with the literal.
+- Now let's create a new variable and initialize it with an expression.
+
+```java
+public class Student {
+  int id = 1000;
+  int nextId = id + 1;
+
+  void compute() {
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- So, `id + 1` is an expression, and when the program is executing and when the controller comes to see the statement `int nextId = id + 1`, `id` will have the value of 1000 and so, `nextId` will become 1001.
+- Then when the `compute()` is invoked, the `nextId` will be printed along with `id`.
+- So, when the `s` student object has been created, at that instance the `int id = 1000` and `int nextId = id + 1` get executed.
+- When `s.compute()` is executed, the control goes into the `compute()` method and prints the `id` and `nextId`.
+- That's how we get 1000 and 1001 printed.
+- Now, `nextId` cannot be declared above `id` declaration.
+
+```java
+public class Student {
+
+  // nextId cannot be declared before id
+  int nextId = id + 1; // error
+  int id = 1000;
+
+  void compute() {
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- If we do that, we get an error that says "illegal forward reference".
+- So, when we have this declaration statement: `int nextId = id + 1`, `id` is not yet declared.
+- This means that the scope of `id` (called as the scope of variable) it starts where it is declared and it is for the enitre class.
+- But, we will discuss it more later on.
+- Now, as we mentioned earlier, the declaration statement can appear anywhere in the class.
+- So, let's move `nextId` to the `compute()` method.
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we recompile and re-run, it is still printing 1000 and 1001.
+- So, when the `Student` object `s` is created, at that instance only the `id` value has been initialized.
+- But, when we invoke the `compute()` method, then control comes to line `int nextId = id + 1` inside it and then `nextId` will be initialized with 1001. Subsequently, those values will be printed.
+- Now, we also said that in the declaration of the variable the initialization is optional.
+- So, let's see what happens if that's the case.
+
+```java
+public class Student {
+  int id;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- It prints the value 0 for `id` and 1 for `nextId`.
+- So, if we are not initializing, then it is getting a default value of 0.
+- And that's the case if the variable is of type `int`.
+- So, if the variable is of type `int`, it gets a default value, and variables of other types might get some other value.
+- Now let's see what happens if we have `id` declared inside of `compute()` as well.
+
+```java
+public class Student {
+
+  void compute() {
+    int id; // error
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- We get an error which says "variable id might not have been initialized".
+- But when we had it in the top level of the class, it was not an issue but, once we moved it inside `compute()`, then it gave us a compilation error.
+- So, the thing is that, the variables that we declare inside a method are called as <ins>local variables</ins> and they do not get any default values.
+- So, just keep that in mind.
+- So, when we declare a variable at the top level of the class, it is called an <ins>instance variable</ins> but, when we declare it in a method, it is called as local variable.
+- We will discuss both of them in one of the subsequent lessons.
+- There is also nother type of variable called <ins>static variable</ins> which is also declared at the class level, and just like an instance variable, it will also get a default value.
+- So, both static and instance variables will be declared at the class level and they would get default values, but local variables will not get default values. More on that later.
+- Now, in order to solve the error that we are getting, we can either initialize the `id` variable with a value in the declaration statement or we can re-assign its value with an assignment statement, and then it will be fine.
+
+```java
+public class Student {
+
+  void compute() {
+    int id;
+
+    // reassigning variable
+    id = 1000;
+
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we recompile and re-run the program, it will be fine.
+- Now lets declare the variable at the class level and re-initialize it inside the `compute()` method.
+
+```java
+public class Student {
+  int id;
+
+  void compute() {
+    // reassigning variable
+    id = 1000;
+
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it prints 1000 and 1001.
+- This is because, `id` is initially 0 but, when the `compute()` function is invoked, the `id` is re-initialized to 1000.
+- Then in the next statement `nextId` is computed as 1001.
+- So, this is how we reinitialize variables.
+- Now, you might also recall from the previous lesson that if we re-assign the variable `id` at class level then it will not work.
+
+```java
+public class Student {
+  int id;
+  id = 1000; // error
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- This is because assignment statements cannot appear at class level.
+- They can only appear at in methods or in other places called contructors, which we will discuss later.
+- But at the class level, you can only have declaration statements.
+- So, you cannot have assignment statements there. That's is just how Java is.
+- So, let's move the assignment statement back inside the `compute()` method.
+- Now, let's initialize the `id` variable at its declaration to 1000 and then reinitialize it inside the `compute()` method to "bhoami".
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    id = "bhoami"; // error
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now we get the error "incompatible types: String cannot be converted to int".
+- So, `id` is of type `int` but then we are trying to reinitialize it with string "bhoami" and that won't work because Java is statically typed language.
+- You also cannot say that the type of `id` is `int` and then initialize it to a string literal.
+
+```java
+public class Student {
+  int id = "bhoami"; // error
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println(id);
+    System.out.println(nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- We get the same error of incompatible types.
+- So, that's the static type checking that the compiler is performing and hence, always keep in mind, Java is a statically typed language.
+- So, if somebody is going to ask you about that, you should just say that it is a statically typed language.
+- Now let's make the print statement a bit more meaningful.
+
+```java
+public class Student {
+  int id = "bhoami"; // error
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- So, the thing is that we know that `+` is for addition, as we discussed previously.
+- We will also discuss arithmetic operations later on and then we will talk about this `+` symbol.
+- But when it is used with strings, then it works as a <ins>concatenation operator</ins>.
+- And a concatenation operator is someting which concatenates, so it would append the thing on its right to the thing on its left.
+- In this `"id: " + id`, the thing on the right is the variable `id` and its value is 1000.
+- So, that value will be appended to this piece of text: `"id: "` which is a string literal.
+- And that is what is getting printed.
+- So, whenever `+` is used with strings, it acts as a concatenation operator, but otherwise it would act as a `+` symbol, which means that you only have numeric operands.
+- So, both of them would be something like integers or some other types, but definitely not strings.
 
 ## Author
 
