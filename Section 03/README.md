@@ -42,6 +42,7 @@
     - [Identifiers - A Note on Naming Rules](#identifiers---a-note-on-naming-rules)
     - [Variables: Introduction](#variables-introduction)
     - [Demo: Declaring \& Re-intializing Variables](#demo-declaring--re-intializing-variables)
+    - [Assignment 01: Currency Converter - Creating a Class with Variables](#assignment-01-currency-converter---creating-a-class-with-variables)
   - [Author](#author)
 
 ## Lessons Learned
@@ -788,6 +789,8 @@ public class Student {
 - And that is what is getting printed.
 - So, whenever `+` is used with strings, it acts as a concatenation operator, but otherwise it would act as a `+` symbol, which means that you only have numeric operands.
 - So, both of them would be something like integers or some other types, but definitely not strings.
+
+### Assignment 01: Currency Converter - Creating a Class with Variables
 
 ## Author
 
