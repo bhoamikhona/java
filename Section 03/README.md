@@ -45,6 +45,7 @@
     - [Assignment 01: Currency Converter - Creating a Class with Variables](#assignment-01-currency-converter---creating-a-class-with-variables)
     - [Variables: Primitive Types](#variables-primitive-types)
     - [Primitive Variables: Integers + Demo](#primitive-variables-integers--demo)
+    - [Demo: Other Integer Literal Formats](#demo-other-integer-literal-formats)
   - [Author](#author)
 
 ## Lessons Learned
@@ -1318,6 +1319,195 @@ public class Student {
 
 - Now, what we have here is the decimal format.
 - `int` and `long` literals can also be represented in other, less commonly used formats, eg Hexadecimal; and that is the subject of our next lesson.
+
+### Demo: Other Integer Literal Formats
+
+- Now, let's look at how integer variables can be represented in other less frequently used formats.
+- We have hexadecimal, binary, and octal formats.
+- Octal is very rarely used so, it is not very important.
+- But, these other formats also improve code readability in certain contexts.
+- They are very less commonly used but, in your professional life, if you happen to work on projects where you need to use such kind of formats, then you need to know how to use them.
+- So, let's go ahead and quickly look at the binary, and hexadecimal formats.
+- Let's use the `BasicDemo` class to learn this.
+- In that class, let's create a method called `primitives()`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+  }
+
+  // other code
+
+
+  static void primitives() {
+    System.out.println("\n\nInside primitives...");
+  }
+}
+```
+
+- Now, one thing you may have observed here is that in `Student` class, we are creating an object of `Student` and then we are invoking the `compute()` method.
+- But in the `BasicsDemo` class we are directly invoking the method.
+- This is because the type of method that we are creating in `BasicsDemo` is `static`, whereas in `Student` class it is called an <ins>instance method</ins>.
+- So, those are different types of methods and we will discuss them later.
+- In fact, we have to still discuss methods itself in a formal way.
+- So, just in case if you have noticed, why a `BasicsDemo` object was not created, that's only because we are using `static` methods here.
+- And `static` methods can be directly invoked from the `main()` method, which is also a `static` method.
+- But, just don't worry about that for now.
+- So, we are invoking the `primitives()` method in the `main()` method of our `BasicsDemo` class.
+- Now let's introduce our first variable.
+- Let's call it as `intHex`, and let's initialize it with the number 0041.
+- Note that hexadecimal numbers start with 0 and X (X can be either uppercase or lowercase).
+- So, our number is 0x0041 where 0041 is our number itself.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+  }
+
+  // other code
+
+
+  static void primitives() {
+    System.out.println("\n\nInside primitives...");
+    int intHex = 0x0041;
+    System.out.println("intHex: " + intHex);
+  }
+}
+```
+
+- Here the variable `intHex` will be assigned 65. As the hexadecimal number 41 maps to the decimal number of 65.
+
+> [!NOTE]
+>
+> If you don't know what Hexadecimal is or how to convert between decimal and hexadecimal, you can read about it online.
+
+- So, now if we compile, we get 65.
+- So, such hexadecimal format is very useful when representing very large or very small numbers.
+- It is also very useful in performing something called <ins>bitwise operations</ins>.
+- We will also look at bitwise operations later.
+- But sometimes in such bitwise operations, it may be even better if we can use binary numbers directly instead of hexadecimal numbers.
+- You can also use decimal numbers in bitwise operations.
+- But in certain low-level programming, you might want to use binary numbers instead of hexadecimal.
+- Using binary numbers (binary literals) is only possible from Java 7 onwards.
+- It was not possible before that.
+- So, let's also use the next format which is the binary format.
+- Binary number starts with 0b (b can either be lowercase or uppercase) and the rest of the number is the actual number itself.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+  }
+
+  // other code
+
+
+  static void primitives() {
+    System.out.println("\n\nInside primitives...");
+
+    int intHex = 0x0041;
+    System.out.println("intHex: " + intHex);
+
+    int intBinary = 0b01000001;
+    System.out.println("intBinary: " + intBinary);
+  }
+}
+```
+
+- This 0b01000001 number translates to 65 so, if we now compile it, we should get 65.
+- Also, even in hexadecimal and binary formats you can use underscores for readability purposes - same rules apply.
+- Hexadecimal and Binary can also be used with long literals too.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+  }
+
+  // other code
+
+
+  static void primitives() {
+    System.out.println("\n\nInside primitives...");
+
+    int intHex = 0x0041;
+    System.out.println("intHex: " + intHex);
+
+    int intBinary = 0b01000_001;
+    System.out.println("intBinary: " + intBinary);
+
+    long longHex = 0x0041L;
+    System.out.println("longHex: " + longHex);
+  }
+}
+```
+
+- Octal is not important at all but, for learning purposes, let's just see how it is.
+- Octal starts with a 0 but, there is no letter like x or b after that. It just follows with more digits.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+  }
+
+  // other code
+
+
+  static void primitives() {
+    System.out.println("\n\nInside primitives...");
+
+    int intHex = 0x0041;
+    System.out.println("intHex: " + intHex);
+
+    int intBinary = 0b01000_001;
+    System.out.println("intBinary: " + intBinary);
+
+    long longHex = 0x0041L;
+    System.out.println("longHex: " + longHex);
+
+    int intOctal = 0101;
+    System.out.println("intOctal: " + intOctal);
+  }
+}
+```
+
+- Octal 0101 also translates to 65, so that's what we get when we compile and run it.
+- That's it.
+- These are other less commonly used formats, and it is good that you also know about this.
+- Just keep in mind that the underscore has to be in-between digits of the number. It cannot be at the start or at the end of the number.
 
 ## Author
 
