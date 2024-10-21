@@ -43,6 +43,7 @@
     - [Variables: Introduction](#variables-introduction)
     - [Demo: Declaring \& Re-intializing Variables](#demo-declaring--re-intializing-variables)
     - [Assignment 01: Currency Converter - Creating a Class with Variables](#assignment-01-currency-converter---creating-a-class-with-variables)
+    - [Variables: Primitive Types](#variables-primitive-types)
   - [Author](#author)
 
 ## Lessons Learned
@@ -791,6 +792,31 @@ public class Student {
 - So, both of them would be something like integers or some other types, but definitely not strings.
 
 ### Assignment 01: Currency Converter - Creating a Class with Variables
+
+### Variables: Primitive Types
+
+- Let's now look at primitive variable types.
+- Although Java is an OOP language, for performance reasons, Java defines 8 primitive data types for variables and here they are:
+- ![primitive-types-1](https://github.com/user-attachments/assets/7b4730a4-c64d-4b50-96c6-94180e41fc4d)
+- The 8 primitive datatypes are emphasized in red here and they include:
+  - `boolean`
+  - `byte`
+  - `short`
+  - `int`
+  - `long`
+  - `float`
+  - `double`
+  - `char`
+- Except for `boolean`, the rest of the datatypes are numeric data types, even `char` which can be used to represent an alphabet, is a numeric type as it is internally represented as an unsigned interger.
+- So, `char` is also a numeric datatype in Java and you should always keep that in mind.
+- Now, you might also wonder why Java designers defined 4 different datatypes just to represent integers? Why not use just one of them?
+- Recall that a variable is like a container and the container will have a certain size.
+- If we have only a single large container for integers then in resource constraint devices it could result in lot of wastage of memory i.e. to represent even a small number, we would be using the same large container i.e. more number of bits are used.
+- Similarly, if you have only a single small container for integers then it may be difficult to represent large numbers i.e. numbers that are too big to fit into the container.
+- So, for this reason, Java defined different containers each with a different size i.e. the datatypes `byte`, `short`, `int`, and `long` have different sizes as we will soon see but, they all represent integers.
+- With this, the programmer can choose the best datatype as per his or her needs.
+- So, these are the 8 different primitive datatypes.
+- Next we will explore them in detail.
 
 ## Author
 
