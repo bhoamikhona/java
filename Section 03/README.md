@@ -44,6 +44,7 @@
     - [Demo: Declaring \& Re-intializing Variables](#demo-declaring--re-intializing-variables)
     - [Assignment 01: Currency Converter - Creating a Class with Variables](#assignment-01-currency-converter---creating-a-class-with-variables)
     - [Variables: Primitive Types](#variables-primitive-types)
+    - [Primitive Variables: Integers + Demo](#primitive-variables-integers--demo)
   - [Author](#author)
 
 ## Lessons Learned
@@ -817,6 +818,506 @@ public class Student {
 - With this, the programmer can choose the best datatype as per his or her needs.
 - So, these are the 8 different primitive datatypes.
 - Next we will explore them in detail.
+
+### Primitive Variables: Integers + Demo
+
+- Let's begin by looking at the integer datatypes.
+- We all know that integer are whole numbers or fixed point numbers and would include both positive as well as negative numbers.
+- In Java, they can be represented by these four primitive data types:
+  - `byte`
+  - `short`
+  - `int`
+  - `long`
+- This table gives more information about these integer datatypes:
+- ![integers-1](https://github.com/user-attachments/assets/ce7a4421-f286-4170-90cc-5c5afd386928)
+- First column shows the different integer data types.
+- Second column indicates their bit depth, which is nothing but the number of bits needed to internally represent the datatype's variable value.
+- Bit depth basically indicates the container size i.e. the storage space needed for a variable's value.
+- Third column indicates the range of values a variable of a particular type can take.
+- Note that range is dependent on the bit depth i.e. higher the bit depth, larger the range.
+- Finally, fourth column indicates the default value of each of the data types.
+- All four data types have 0 as a default value and we have already seen that for the `int` data type in one of the previous demos.
+- Also, recall that variables declared in a method i.e. the local variables will not get any default value.
+- So, let's look at what we have here for each of the datatypes.
+- First is `byte`, which is represented in 8 bits.
+- Due to this, a `byte` variable can hold any value between -2<sup>7</sup> to 2<sup>7</sup> - 1. That is, -128 to +127.
+- And if you try to assign it a value outside of this range then you get a compilation error and soon we will see this in our demo.
+- Now, in case you are not sure why a base 2 is used here, it is only because computers use binary system which deals with only 0s and 1s.
+- We know that decimal system uses base 10 as decimal system uses teh digits 0 to 9 to represent numbers.
+- Also, if you are wondering why the range is -128 to +127, it is only because the bit depth is 8 which can be used to represent a total of 2<sup>8</sup> numbers i.e. 256 numbers, -128 to +127 including 0.
+- Now, among the 8 bits, the left most bit, which is called as the sign bit tells whether an number is positive or negative.
+- If the sign bit is 0, it means it is a positive number, and if it is 1, it means that it is a negative number.
+- Generally, the left most bit is also referred to as the most significant bit.
+- The remaining 7 bits indicate the magnitude of the number like 127.
+- So, that's the reason the range says -2<sup>7</sup> to 2<sup>7</sup> - 1.
+- One of them is the signed bit.
+- Next, `short` is represented in 16 bits.
+- So, it's bit depth is higher than the bit depth of `byte` and so can store larger values.
+- The range of values that a `short` can hold is between -2<sup>15</sup> to 2<sup>15</sup> - 1, which is nothing by -32,768 to +32,767.
+- Next, `int` is represented in 32 bits and can take any value between -2<sup>31</sup> to 2<sup>31</sup> - 1.
+- So, it can hold very large numbers.
+- Finally, `long` is represented by 64 bits and so, it can take any value between -2<sup>63</sup> to 2<sup>63</sup> - 1.
+- So, `long` as its name implies, is really long i.e. it can hold very, very large numbers.
+- Now as good software engineers, we do need to have a clear idea of the different data types that are supported, and how much memory they consume.
+
+> [!IMPORTANT]
+>
+> It is imperative to firmly memorize what we see in the table above, about the different data types, their bit depth, and the corresponding range of values that they support.
+
+- You can expect couple of questions from this table in the upcoming quest.
+- Now, internally Java uses something called <ins>signed two's complement scheme</ins> to represent integer.
+- That's what computers also use to represent integers.
+
+> [!NOTE]
+>
+> If you don't know what is signed 2's complement scheme, read the following article: [Link to Article](https://www3.ntu.edu.sg/home/ehchua/programming/java/DataRepresentation.html)
+>
+> This article discusses signed 2's complement scheme as well as other schemes for representing floating point and characters, which we will discuss later.
+>
+> You don't have to read this article right away, you can do it later once you are comfortable with Java.
+
+- Now, let's go ahead and extend our `Student` class by declaring some new integer variables.
+- So, here is our `Student` class:
+
+```java
+public class Student {
+  int id = 1000;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- We declared a variable called `id`, which is of datatype `int`, and it is initialized to 1000.
+- So, we already used the `int` data type and we also had this method called as `compute()`, where we are declaring another variable called `nextId` which is also of type `int`, and it would be `id + 1`, and we are printing both the values in the `compute()` method.
+- In the `main()` method we are creating an object for `Student` class and we are invoking the `compute()` method which would print both the values.
+- So, let's go ahead and create more variables.
+- So, let's create a `byte` variable called `age` and initialize its value to 18.
+- So, the student's age is 18.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now let's introduce another `byte` variable called `rank`.
+- Assume that there is an entrance test to get an admission in the university, and so there would be a rank associated with the entrance test.
+- Let's say that the student got a rank of 165 in the entrance test in order to gain an admission into the university.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  byte rank = 165; // error, byte range: [-128, 127]
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile this, we get an error which says that "possible lossy conversion from int to byte".
+- Essentially, what it is saying is that the value 165 falls outside the range of `byte`.
+- We know that `byte`'s range is -128 to 127.
+- So, 165 falls outside this range hence, we get a compilation error.
+- Now, let's look at the error message: "possible lossy conversion from from int to byte"
+- "byte" is fine because we are trying to create a `byte` variable but, why does it say `int`?
+- The thing is, we know that 165 is a literal and in Java, 165 is a literal of type `int`.
+- In Java, you don't have a `byte` literal. You only have an `int` literal or a `long` iteral, which we will discuss next.
+- But, we don't have literals of type `byte` or literals of type `short`.
+- So, no `byte` or `short`literals, we only have `int` or `long` literals.
+- So, if you see some number like 165, just a whole number like 18 or 165 then it is an `int` literal.
+- So, in order to make it work, we can assign it to a `long` or a `short` or an `int`, a larger datatype.
+- So, that's the reason why it says "possible lossy conversion from int to byte".
+- Now, if we change 165 to 128, then it is still out of range, so it will give the same error.
+- But if you say -128 OR 127 then we should be good beause it falls within the range.
+- But, we wanted to assign 165 so, let's just change the `byte` to `short`.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it works because `short` has a larger range of values.
+- Now, let's introduce phone number and have its datatype as `int`.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+  int phone = 1234567890;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- If we compile this, then it works fine.
+- Now, let's change the left most digit of `phone` to 2.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+  int phone = 2234567890; // error: integer number too large
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it says "integer number too large".
+- So, this number: 2234567890 falls outside the range of `int`, which is fine, but you may notice that the error message is different from what we had earlier.
+- Earlier, it said there there is incompatible types from `int` to `byte`, but here is does not say that, it says something else, it says "integer number too large".
+- The reason is it is complaining about the literal 2234567890 itself.
+- So, it is an invalid `int` literal.
+- We know that `int` ranges from -2<sup>31</sup> to 2<sup>31</sup> - 1, and 2234567890 falls outside that range.
+- So, it is complaining about the literal itself.
+- It is a larger number so, we need to make it a `long` literal, and the way you do it is just add a trailing `L`, and it would be a `long` literal.
+- You can use an uppercase L or a lowercase l, but it is recommended to use uppercase because the lowercase l is very similar to 1, and it can be very difficult to distinguish.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+  int phone = 2234567890L; // add a trailing L
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile this, it gives the other type of error "possible lossy conversion from long to int", which we have seen earlier for incompatible types.
+- Here it says "from long to int" which is fine, because 2234567890L is `long`, and we are declaring it as an `int` and it is not within the range of `int`.
+- But, the important thing is that `long` literal cannot be assigned to `int` even if the number is within the range of `int`.
+- For example, let's add a trailing L to the `id` variable with the value of 1000.
+
+```java
+public class Student {
+  int id = 1000L; // error: possible lossy conversion from long to int
+  byte age = 18;
+  short rank = 165;
+  int phone = 2234567890L; // error: possible lossy conversion from long to int
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now we get two compilation errors. One is for the `id` variable and the other one is for `phone` variable.
+- Both of them say that "possible lossy conversion from long to int`.
+- Here: `byte age = 18` is fine because we are using an `int` literal 18 and assigning it to a `byte` datatype, and it is working fine because 18 is within `byte` range.
+- So, compiler is not complaining about that.
+- But, if we change it to a `long` literal, the compiler doesn't like it.
+
+```java
+public class Student {
+  int id = 1000L; // error: possible lossy conversion from long to int
+  byte age = 18L; // error: possible lossy conversion from long to int
+  short rank = 165;
+  int phone = 2234567890L; // error: possible lossy conversion from long to int
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- So, this time it gives 3 errors, one for `id`, another for `age`, and last one for `phone`.
+- So, the thing is that `int`, `byte`, and `short` can be assigned only `int` literals.
+- That's how the language designers have designed it.
+- The `long` literal i.e. the one with trailing `L`, cannot be assigned to any of three viz `int`, `byte`, and `short`.
+- If you do that, we get a compilation error, as we just saw.
+- So, a `long` literal can be assigned only to `long` or to other datatypes which are larger than `long` - we will see that later.
+- So, always keep in mind that there are two integer literals viz <ins>int literal</ins> and <ins>long literal</ins>.
+- So, to remedy the situation, all we have to do is to replace `int` with `long`.
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 2234567890L;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it works fine.
+- Now, 2234567890 is a very large number, and not very readable.
+- Maybe the first three digits of the number is area code and when you are using the user interface, sometimes the area code is take separately.
+- So, it might be good to make it more readable.
+- For instance, we can use underscore between the digits of the number, like so:
+
+```java
+public class Student {
+  int id = 1000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 223_456_7890L;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- From Java 7 onwards, you can actually use underscores between the digits of a number to make it more readable - just like we use commas in real life.
+- Just keep in mind that these underscores cannot appear at the beginning or ending of a number. So, `_2234567890` and `2234567890_` is invalid. The underscore has to be somewhere in the middle.
+- Also note, if you print this number, with underscore in between the digits, it will print it without the underscores.
+- This applies for both, `int` literal and `long` literal.
+- So, let's try and print it.
+
+```java
+public class Student {
+  int id = 1_000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 223_456_7890L;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+    System.out.println("rank: " + rank);
+    System.out.println("phone: " + phone);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Finally, let's see something interesting.
+- So we know that the minimum value of `int` is -2<sup>31</sup>, and the max value is 2<sup>31</sup> - 1.
+- So, if at all you want to see what those numbers are, you can print `Integer.MIN_VALUE` and `Integer.MAX_VALUE` to get the minimum and maximum values of `int`.
+
+```java
+public class Student {
+  int id = 1_000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 223_456_7890L;
+
+  int minValue = Integer.MIN_VALUE;
+  int maxValue = Integer.MAX_VALUE;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+    System.out.println("rank: " + rank);
+    System.out.println("phone: " + phone);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- So, `Integer` is a class that comes with the Java library, it is called as <ins>boxed primitive</ins> or a <ins>wrapper type</ins>.
+- And every primitive type has an associated boxed primitive.
+- So, `Integer` is a boxed primitive class and we will discuss it later in a subsequent section.
+- So, all of the 8 primitive datatypes have associated box primitive types.
+- For `byte` also, we can get its min and max value, which are -128 and 127 in the same way.
+- So, let's go ahead and print these values.
+
+```java
+public class Student {
+  int id = 1_000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 223_456_7890L;
+
+  int minValue = Integer.MIN_VALUE;
+  int maxValue = Integer.MAX_VALUE;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+    System.out.println("rank: " + rank);
+    System.out.println("phone: " + phone);
+    System.out.println("minValue: " + minValue);
+    System.out.println("maxValue: " + maxValue);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- If you want to see it for `byte` then you can do this:
+
+```java
+public class Student {
+  int id = 1_000;
+  byte age = 18;
+  short rank = 165;
+  long phone = 223_456_7890L;
+
+  int minValue = Integer.MIN_VALUE;
+  int maxValue = Integer.MAX_VALUE;
+
+  byte byteMinValue = Byte.MIN_VALUE;
+  byte byteMaxValue = Byte.MAX_VALUE;
+
+  void compute() {
+    int nextId = id + 1;
+
+    System.out.println("id: " + id);
+    System.out.println("nextId: " + nextId);
+    System.out.println("age: " + age);
+    System.out.println("rank: " + rank);
+    System.out.println("phone: " + phone);
+    System.out.println("minValue: " + minValue);
+    System.out.println("maxValue: " + maxValue);
+    System.out.println("byteMinValue: " + byteMinValue);
+    System.out.println("byteMaxValue: " + byteMaxValue);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now, what we have here is the decimal format.
+- `int` and `long` literals can also be represented in other, less commonly used formats, eg Hexadecimal; and that is the subject of our next lesson.
 
 ## Author
 
