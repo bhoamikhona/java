@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 public class BasicsDemo {
   // 1. Naming rules for classes/methods/variables
   // a. First character: letter, underscore, $
@@ -26,12 +28,6 @@ public class BasicsDemo {
     System.out.println("Hello,");
     System.out.print(" "); // print a space
     System.out.print("World!");
-  }
-
-  public static void main(String[] args) {
-    print();
-    arithmetics();
-    primitives();
   }
 
   // 4. Comments or Disabling Code
@@ -73,4 +69,19 @@ public class BasicsDemo {
     int intOctal = 0101;
     System.out.println("intOctal: " + intOctal);
   }
+
+  public static void main(String[] args) {
+    print();
+    arithmetics();
+    primitives();
+
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+
+    BigDecimal first = new BigDecimal("0.1");
+    BigDecimal second = new BigDecimal("0.2");
+
+    System.out.println(first.add(second));
+  }
+
 }

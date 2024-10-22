@@ -47,6 +47,7 @@
     - [Primitive Variables: Integers + Demo](#primitive-variables-integers--demo)
     - [Demo: Other Integer Literal Formats](#demo-other-integer-literal-formats)
     - [Primitive Variables: Floating-Point Numbers + Demo](#primitive-variables-floating-point-numbers--demo)
+    - [Demo: Floating-Point Pitfalls](#demo-floating-point-pitfalls)
   - [Author](#author)
 
 ## Lessons Learned
@@ -1731,6 +1732,174 @@ public class Student {
 - This is the output: `gpa: 3.8888888`.
 - Now it is printing 7 digits and the number is truncated.
 - So, that's all there is with `float` and `double` data types.
+
+### Demo: Floating-Point Pitfalls
+
+- In the last lesson we looked at `float` and `double` datatypes and you can use them if you are fine with computations that could lead to approximate results.
+- For instance, if you want to measure distance between two points and the actual distance is 515.8 miles and if your program computes it as, say 515.1 miles, then it is still fine.
+- It is tolerable/acceptable, life is still good.
+- But, if you application needs exact results then you should avoid `float` or `double` data types.
+- For example, let's say if you have an e-commerce website then you would want all the sales to be exactly represented.
+- If you charge less, you may run into losses.
+- That's because `float` and `double` are associated with certain pitfalls and many engineers are not aware of this and things could be fine most of the time.
+- But, if they run into this limitation that we are going to see, then they would see some surprising results and those could be disastrous too.
+- So, let's go ahead and check it out, and it is very important to be aware of this.
+- So, let's look at it in `BasicDemo` class.
+- Let's say that we want to subtract 0.9 from 1 and print the result.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+  }
+
+}
+```
+
+- The result should be 0.1 but, it gives us 0.09999999999999998 which is slightly lower than 0.1 but, it is not 0.1.
+- Now let's take one more example, let's say we want to add 0.1 and 0.2 for which the result should be 0.3.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+  }
+
+}
+```
+
+- We get 0.30000000000000004 instead of 0.3 so, it gives us a slightly larger number.
+- So, the reason for this is is that numbers like 0.1, 0.2, etc cannot be accurately represented within computers, and this is due to the format that computers use.
+- They follow IEEE 754 format and specifically they follow the binary floating-point format.
+- And in that format, such numbers cannot be accurately represented.
+- Now, this is an issue with all languages, it is not just Java.
+- If you Google about this, you will see that with other languages like JavaScript and Python they also have the same issue.
+- So, in Binary, 0.1 is represented like this: 0.00011001100110011...
+- This 0011 will be repeated infinitely. This is because of the fomat but, both `float` and `double` have limited number of bits. So, this huge value has to be truncated to whatever `float` or `double` would have. So, it is an approximated and rounded. So, there will also be a rounding error.
+- Now the issue is because the denominator of these number are not a power of 2.
+- For instance, if you pick the number 0.1 then it is nothing 1/10.
+- The 10 in the denominator is not a power of 2.
+- If you pick 0.2 = 2/10 = 1/5 -- here also, the denominator is not a power of 2.
+- Now, if you pick 0.5 = 5/10 = 1/2 -- so in the denominator you have 2 to the power of 1.
+- So, 0.5 can be accurately represented.
+- But, most of the numbers cannot be.
+- This is especially an issue if we are dealing with money.
+- So, when you are dealing with money, you should not be using `double` and `float`.
+- It would be disastrous if you use it.
+- So, what is recommended is to use a class in Java called `BigDecimal`.
+- So, `BigDecimal` comes with the Java library and you can use it, especially when you are dealing with things like money, where you need exact results.
+- So, let's see how it would work.
+- `BigDecimal` is a class so, we will first create an object of that.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+
+    BigDecimal first = new BigDecimal();
+  }
+
+}
+```
+
+- But, instead of empty parentheses, we pass in the string of the value, like so:
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+
+    BigDecimal first = new BigDecimal("0.1");
+    BigDecimal second = new BigDecimal("0.2");
+  }
+
+}
+```
+
+- Now to compute the values, `BigDecimal` has a method called `add()`.
+- We call `add()` on the `first` object using the `.` operator and within its parenthese we pass in the `second` object.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+
+    BigDecimal first = new BigDecimal("0.1");
+    BigDecimal second = new BigDecimal("0.2");
+
+    System.out.println(first.add(second));
+  }
+
+}
+```
+
+- Now, this `BigDecimal` is part of a `math` package in Java so, we will need to import it for this to work.
+
+> [!NOTE]
+>
+> Java library is split into packages
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+import Java.math.BigDecimal;
+
+public class BasicsDemo {
+  // other code
+
+  public static void main(String[] args) {
+    // other code
+    System.out.println(1 - 0.9);
+    System.out.println(0.1 + 0.2);
+
+    BigDecimal first = new BigDecimal("0.1");
+    BigDecimal second = new BigDecimal("0.2");
+
+    System.out.println(first.add(second));
+  }
+
+}
+```
+
+- Now if we compile and run it, it gives us 0.3.
+- So, you have to use `BigDecimal`.
+- Now `BigDecimal` is slow but, if your application needs it, you have to use it.
+- So, in any e-commerce application, that's what they use.
+- Now there is item 48 in effective Java. It is item 48 in 2nd version and item 60 in 3rd version.
+- These items are rules or best practicies.
+- So item 48 says to avoid `float` and `double` if exact answers are required.
+- That's what we mentioned in this particular lesson.
+- It also talks about some of these examples and it recommends using `BigDecimal` but, it has some more information beyond what we discussed in this lesson.
+- So later, once you are through this course and you are comfortable with Java, you can go ahead and read that particular article, just so that you will have a little bit more information than what we discussed.
 
 ## Author
 
