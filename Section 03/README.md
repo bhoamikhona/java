@@ -46,6 +46,7 @@
     - [Variables: Primitive Types](#variables-primitive-types)
     - [Primitive Variables: Integers + Demo](#primitive-variables-integers--demo)
     - [Demo: Other Integer Literal Formats](#demo-other-integer-literal-formats)
+    - [Primitive Variables: Floating-Point Numbers + Demo](#primitive-variables-floating-point-numbers--demo)
   - [Author](#author)
 
 ## Lessons Learned
@@ -1508,6 +1509,228 @@ public class BasicsDemo {
 - That's it.
 - These are other less commonly used formats, and it is good that you also know about this.
 - Just keep in mind that the underscore has to be in-between digits of the number. It cannot be at the start or at the end of the number.
+
+### Primitive Variables: Floating-Point Numbers + Demo
+
+- Now let's look at the data types that represent floating point numbers.
+- Floating point numbers are real numbers like 3.14, and they can be negative too.
+- They are good for measurements such as product rating or distances between two points or temperature, etc.
+- In Java, they can be represented by either `float` or `double` data types.
+- Here is a table with more information about `float` and `double`.
+- ![float-1](https://github.com/user-attachments/assets/1f0b9cfa-b107-404d-80ee-ccbda734bb7a)
+- The table is similar to the one that we saw for integers.
+- One new column has been added to indicate precision, which indicates the number of digits we can have after the decimal point.
+- Like integer datatypes, `float` and `double` also get a default of 0.
+- Note that variables declared within the methods do not get such a default value.
+- The trailing `f` in numbers like `0.0f` indicates `float` while the trailing `d` indicates `double`.
+- So, let's start with `float`.
+- `float` is represented in 32 bits and can take any value between -3.4 &times; 10<sup>38</sup> to +3.4 &times; 10<sup>38</sup>.
+- In the table (in value range column), the notation with an `E` is called as exponential or scientific notation, and `E` can be in either upper or lower case.
+- Generally, such a scientific notation is used only when representing very large or very small numbers.
+- And with regards to precision, with `float`, we can have at most 6 to 7 decimal digits.
+- Next, `double` is represented in 64 bits and hence can store a larger range of values.
+- The range of values it can store is in between -1.7 &times; 10<sup>308</sup> and +1.7 &times 10<sup>308</sup>.
+- With regards to precision, with `double` we can have at most 15 to 16 decimal digits.
+- So, as we can see, `double` is more precise when compared to `float`.
+- So, just try to memorize the information in the table above, as much as possible.
+- Here we can see that we have the value of 1.7 for `float` and 3.4 for `double`. So, 3.4 is just two times 1.7 - just a good way to remember.
+- For the exponent part, you have 38 for `float` and 308 for `double`. Just a tip to remember.
+- The precision for `float` is 6-7 digits and the precision for `double` is 15-16 digits.
+- So, if a number has more decimal digits then what a `float` or `double` can represent, then it cannot be accurately represented and hence would be approximated.
+- That is, the number of decimal digits would be reduced to 6-7 or 15-16 depending on the data type.
+- Number Pi is one such example.
+- With real numbers, even with a small range of number like say 0.1 and 0.2, we can have infinite real numbers.
+- So, many of these numbers cannot be accurately represented by either `float` or `double` because they have limited number of bits.
+- And of the two, it is recommended to use `double` as it is more precise.
+- In general, you should stick with `int` and `double`.
+- So, among the integer data types, `int` is what you should be using.
+- But, if the value falls outside the range of `int`, then you can use `long`.
+- And if memory saving is critical, then you can think about using smaller size data types like `byte`, `short`, and `float`. You can also use them if you think it helps with readability.
+- It seems game development is one area where `float` is preferred.
+- Now internally, Java uses <ins>IEEE 754 floating-point scheme</ins> to represent `float` and `double`.
+- Recall that it was <ins>Signed 2's complement scheme</ins> for integers.
+
+> [!NOTE]
+>
+> If you don't know what is signed 2's complement scheme OR IEEE 754 floating-point scheme, read the following article: [Link to Article](https://www3.ntu.edu.sg/home/ehchua/programming/java/DataRepresentation.html)
+
+- Now let's go back to the `Student` class and look at how `float` and `double` variables are declared.
+- Let's add a new variable and its datatype will be `float`. The variable's name is gpa.
+- GPA stands for grade point average and it is used to judge the performance of a student in a particular semester based on the grades he/she receives for the different courses the student is enrolled in.
+- Let's say this student has a GPA of 3.8.
+- For `float`, we have a trailing `f` (it can be upper or lower case) - this is mandatory.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  float gpa = 3.8f;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile and run it, it works just the way we expect it to.
+- Now, let's see what happens if we remove the trailing `f`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  float gpa = 3.8; // error: incompatible types: possible lossy conversion from double to float
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- It gives a compilation error and this error message should be familiar to you.
+- It says "incompatible types: possible lossy conversion from double to float".
+- So, what this means is that we are trying to assign a double literal to a `float` variable.
+- So, what this means is that we are trying to assign a double literal.
+- So, if you do not include the trailing `f` then it would be a `double` data type.
+- So by default, if you do not include anything, it is going to be a double literal and we are trying to assign a `double` to a `float`, and that's not possible.
+- And `double` is a larger datatype.
+- So, that's the thing.
+- So, we need to change it to `double`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  double gpa = 3.8;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile it, it compiles fine and prints the value 3.8.
+- So by default, it will be a `double` literal.
+- Now if you wish you can also add a trailing `d` e.g. `3.8d`.
+- This `d` can be either lowercase or uppercase, and it simply indicates that it is a `double` datatype.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  double gpa = 3.8d;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- But, if you do not include anything then it is still going to be double literal.
+- Now we also mentioned about the scientific notation or exponential notation.
+- So, that would be `e` and let's say we have 4.
+- So, it would be 3.8 &times; 10<sup>4</sup> which would equal to 38,000.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  double gpa = 3.8e4;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- If we compile and run it, we do indeed get 38,000.
+- So, such a scientific notation is used when you want to represent very large or very small numbers.
+- Now let's look at the precision.
+- We said that with `double` it would be 15-16 digits.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  double gpa = 3.888888888888888888888888888888888888888;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- We get this output: `gpa: 3.888888888888889`
+- So, that huge number is truncated to 15 digits because `double` has a precision of 15.
+- So, there is an approximation and besides taht there is soemthing called rounding that has been done.
+- The last digit of the output is rounded to 9.
+- So, the output number is just an approximate.
+- Now let's change the datatype to float, and let's see what happens.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  float gpa = 3.888888888888888888888888888888888888888f;
+
+  void compute() {
+    // other code
+    System.out.println("gpa: ": gpa);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- This is the output: `gpa: 3.8888888`.
+- Now it is printing 7 digits and the number is truncated.
+- So, that's all there is with `float` and `double` data types.
 
 ## Author
 

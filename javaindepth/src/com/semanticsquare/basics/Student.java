@@ -10,6 +10,8 @@ public class Student {
   byte byteMinValue = Byte.MIN_VALUE;
   byte byteMaxValue = Byte.MAX_VALUE;
 
+  double gpa = 3.888888888888888888888888888888888888888;
+
   void compute() {
     int nextId = id + 1;
 
@@ -22,6 +24,7 @@ public class Student {
     System.out.println("maxValue: " + maxValue);
     System.out.println("byteMinValue: " + byteMinValue);
     System.out.println("byteMaxValue: " + byteMaxValue);
+    System.out.println("gpa: " + gpa);
   }
 
   public static void main(String[] args) {
