@@ -48,6 +48,7 @@
     - [Demo: Other Integer Literal Formats](#demo-other-integer-literal-formats)
     - [Primitive Variables: Floating-Point Numbers + Demo](#primitive-variables-floating-point-numbers--demo)
     - [Demo: Floating-Point Pitfalls](#demo-floating-point-pitfalls)
+    - [Primitive Variables: Character Data Type + Demo](#primitive-variables-character-data-type--demo)
   - [Author](#author)
 
 ## Lessons Learned
@@ -1900,6 +1901,313 @@ public class BasicsDemo {
 - That's what we mentioned in this particular lesson.
 - It also talks about some of these examples and it recommends using `BigDecimal` but, it has some more information beyond what we discussed in this lesson.
 - So later, once you are through this course and you are comfortable with Java, you can go ahead and read that particular article, just so that you will have a little bit more information than what we discussed.
+
+### Primitive Variables: Character Data Type + Demo
+
+- Thus far we have looked at the primitive data types that represent numbers that is both, whole as well as real numbers.
+- For whole numbers, we have the integer data types `byte`, `short`, `int`, and `long`.
+- For real numbers, we have `float` and `double`.
+- We looked at 6 primitive data types so far and now, let's look at the next one which represents characters.
+- Sometimes, we would like our variables to hold single letter characters like an alphabet or a digit like 0 or a special symbol like $.
+
+> [!NOTE]
+>
+> We are talking about a single letter character and not multiple characters.
+>
+> For multiple characters, you would use a string but, string is not a primitive data type.
+>
+> It is a class that comes with the Java library.
+>
+> We will look at strings later.
+
+- So, if you want your variable to hold a single character, then in Java, you would declare such a variable with a `char` datatype.
+- Example: `char degree = 'B';` (B can be for Bachelor's degree)
+- A `char` literal includes single quotes and we would get a compiler error if we omit the quotes or if we have multiple characters within the quotes.
+- The example above shows how we declare a `char` variable but, there is a lot more to `char` data type so, let's get a good, solid understanding of the `char` data type.
+- Though we are dealing with characters, internally, Java uses a <ins>16-bit unsigned integer scheme</ins> to represent characters.
+- Unsigned integers represent 0 and positive integers, but not negative integers. Basically, whole numbers.
+- Essentially, characters are integers internally.
+- For instance, the `char` literal `B` will be stored as the integer 66. We will see how this mapping happens in a few moments.
+- Below is a table with more information on `char`.
+- ![char-1](https://github.com/user-attachments/assets/4ce0465c-107b-4151-8f6d-bc96ac5871d3)
+- `char`'s bit depth is 16 bits i.e. a `char` value will be represented in 16 bits.
+- And because `char` is internally a 16-bit unsigned integer, the range will be 0 to 2<sup>16</sup> - 1, that is 0 to 65,535 (you need to memorize these numbers).
+- Note that here, 2 is raised to the power of 16 and not 15, like in the case of integer data types, as we are dealing with unsgined integers which do not include negative numbers.
+- In other words, we do not need any special sign bit as with the integer data types.
+- With integer data types, we need a signed bit to distinguish positive and negative numbers.
+- Since we do not have negative numbers in the case of `char`, we do not need a signed bit.
+- So, with unsigned integers, all of the bits together represent the mangitude.
+- Recall that with signed integers, the bits following the signed bit represent the magnitude.
+- So, it means that we can represent as many as 2<sup>16</sup> characters in Java for `char` i.e. 65,536 characters.
+- So, a `char` variable can take any of those 65,536 characters and a corresponding integer value will be stored internally, in the memory.
+- For example the integer 66 will be stored in the memory for the character `B`.
+- If you are wondering what makes up all those 65,536 characters since we only have 26 English characters, and we can double that number to account for uppercase and lowercase alphabets, and we only have 0-9 digits and a few special symbols then what makes up for 65,536 characters?
+- We need to remember that we have many characters in the world and each of those languages have many characters.
+- So, we have many characters to represent.
+- For instance, we should be able to represent a character such as this: ఈ. This character belongs to one of the Indian languages called Telugu.
+- We even need to store emojis like this one: 😂
+- We have many such symbols.
+- So, we need to be able to represent such kind of characters too.
+- Therefore, there is a mapping between characters and the corresponding integer values get stored internally.
+- This mapping is defined by the Unicode character set.
+- Unicode is a standard character set like ASCII, but can represent all characters in all languages across the world.
+- It can represent all those exotic symbols too.
+- It does so by associating every character with a hexadecimal number called <ins>code point</ins>.
+- That hexadecimal number maps to some integer value, which is what is stored internally in binary format.
+- But Unicode is a standard specification and it can have different implementations.
+- Java uses one such implementation called UTF-16.
+- Such an implmentation is referred to as an encoding scheme.
+- Languages like C# and Python also use UTF-16 for storing characters.
+- There are other encoding schemes too like UTF-8 and UTF-32.
+- These schemes vary in the storage space they use.
+- For instance, UTF-16 might use 16 bits for a particular character while UTF-8 might use only 8 bits for the same character.
+- So, Unicode is a character set and UTF-16 is the encoding scheme that Java uses.
+- UTF-16 also defines hexadecimal numbers like Unicode.
+- For most characters, it uses the same hexadecimal numbers as Unicode.
+- So, in Java, every `char` literal is encoded as a UTF-16 hexadecimal number.
+- For instance, the `char` literal `B` would be encoded as UTF-16 hexadecimal number 0042, and its corresponding 16-bit unsigned integer: 00000000 01000010 is what gets stored internally. 0100 is 4 in binary and 0010 is 2 in binary therfore 01000010 represents 42 in binary.
+- So, that's the benefit of hexadecimal numbers.
+- It can be easily mapped to the binary format.
+- And this 16-bit unsigned integer: 00000000 01000010 corresponds to the decimal value 66.
+- So, that's how the character literal `B` is mapped to 66.
+- So, for every character, you can imagine such a tupple: `<'B', \u0042, 66>`.
+- Here we have the character uppercase `B` and it is associated with UTF-16 hexadecimal number 0042 and also decimal number 66.
+- The binary equivalent of 66 is what is stored internally.
+- Note that both hexadecimal 0042 and 66 correspond to the same binary number.
+- In fact, the `char` variable `degree` can also be directly assgined such a hexadecimal number.
+- That is, we can assign a literal such as this one: `'\u0042'`.
+- This is called as <ins>Unicode Escape Sequence</ins> where we have a backslash followed by `u`, followed by the hexadecimal number 42.
+- `u` here stands for Unicode and it needs to be in lowercase.
+- Otherwise, we will get a compiler error.
+- So, this is same as assigning the `char` literal uppercase `B`.
+- Typically, you would use `char` literals for variable initialization, but sometimes, if you have to represent certain special characters and if your editor does not support them, then you can use such Unicode escape sequence for initialization.
+- The default value for `char` is `\u0000` which is shown in the table above. This unicode represents a null character.
+- A null character is a control character. Meaning that it is not something that you can print.
+- In input/outpput section, one of the first lessons gives us a very detailed introduction to character encoding.
+- In fact, it is a prerequisite lesson for that section.
+- So, if you are not familiar with encoding, you can learn about it when you get there.
+
+> [!NOTE]
+>
+> This article also discusses about character encoding: [Link to Article](https://www3.ntu.edu.sg/home/ehchua/programming/java/DataRepresentation.html)
+
+- Now let's go ahead and use our `Student` class to see `char` varaible in action.
+- So, let's go ahead and introduce a new variable called `degree` which will be of type `char` and initialize its value to `'B'`, where `B` can be for Bachelor's so, the student can be a Bachelor's student.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = 'B';
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile and run it, it works just as we expect it to.
+- Now, let's try some invalid `char` initializations.
+- First, let's try and remove the single quotes around `B`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = B; // error
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- We get the error which says "cannot find symbol". We get this error because compiler thinks that `B` is some variable and it is not able to find that variable hence, the error.
+- So, we need to have single quotes around the `char` value - that's a requirement.
+- We also cannot have multiple characters. That is also invalid.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = 'BA'; // error
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- When we have multiple characters in a `char`, we get the error "unclosed character literal" - all it is trying to say is we cannot have multiple characters in a `char` variable.
+- Now let's try an empty `char` value.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = ''; // error
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- This time we get an error which says "empty character literal" so, that is invalid as well.
+- Although, an empty space character is allowed.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = ' '; // this works
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- So, that's the char literal.
+- We also discussed about the unique code escape sequence.
+- We said that the char literal uppercase `B` can also be represented as `\u0042`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = '\u0042'; // this will also print char B
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- This works because the unicode `\u0042` corresponds to uppercase B in UTF-16.
+- We also said that the `u` in `\u0042` needs to be lowercase, otherwise it will throw an error.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = '\U0042'; // error
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Similarly, it needs to be a valid hexadecimal number.
+- So, it is called as a code point in unicode specification.
+- And in UTF-16, we just call it as code unit.
+- That's just for your information.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree = '\u004'; // invalid hexadecimal number - error
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now it gives us an error which says "illegal unicode escape" basically, an invalid hexadecimal number.
+- The default value is a null character.
+- So, null is something that we cannot print.
+- So, let's do that.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+  char degree; // default value is null
+
+  void compute() {
+    // other code
+    System.out.println("degree: " + degree);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we run it, you will see that nothing is printed.
+- The null character's unicode number is 0 and it is represented like this: `\u0000`. So, `char degree;` and `char degree = '\u0000';` both are one and the same.
+- Generally speaking, we would initialize a `char` variable.
+- For `int` and other variables we may have default intializations, but with `char` we do initialize. That's how it is in practice.
+- Recall that we talked about boxed primitives when discussing integer data types.
+- We said that every primitive type also has an associated box primitive.
+- Like for `int`, we looked at the `Integer` class. It is also called as a wrapper class.
+- And box parameters will be discussed later.
+- But, we saw that for `int`, we had the `Integer` class and `Integer` class defined both `MIN_VALUE` and `MAX_VALUE`.
+- Similarly, for `char` there is a class called as `Character`. So, it is the box parameter class or the wrapper class.
+- It also has `MIN_VALUE` for `char` which is `\u0000` and the `MAX_VALUE` is `\0ffff`.
+- This is just for your information but, we will discuss the boxed primitive classes later on, in a different section.
 
 ## Author
 

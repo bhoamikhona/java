@@ -12,6 +12,8 @@ public class Student {
 
   double gpa = 3.888888888888888888888888888888888888888;
 
+  char degree = 'B';
+
   void compute() {
     int nextId = id + 1;
 
@@ -25,6 +27,7 @@ public class Student {
     System.out.println("byteMinValue: " + byteMinValue);
     System.out.println("byteMaxValue: " + byteMaxValue);
     System.out.println("gpa: " + gpa);
+    System.out.println("degree: " + degree);
   }
 
   public static void main(String[] args) {
