@@ -68,6 +68,21 @@ public class BasicsDemo {
 
     int intOctal = 0101;
     System.out.println("intOctal: " + intOctal);
+
+    char charInt = 65;
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+
+    int intChar = 'A';
+    System.out.println("intChar: " + intChar);
   }
 
   public static void main(String[] args) {
@@ -83,5 +98,4 @@ public class BasicsDemo {
 
     System.out.println(first.add(second));
   }
-
 }

@@ -49,6 +49,7 @@
     - [Primitive Variables: Floating-Point Numbers + Demo](#primitive-variables-floating-point-numbers--demo)
     - [Demo: Floating-Point Pitfalls](#demo-floating-point-pitfalls)
     - [Primitive Variables: Character Data Type + Demo](#primitive-variables-character-data-type--demo)
+    - [Demo: Alternate Ways to Initialize char Variables](#demo-alternate-ways-to-initialize-char-variables)
   - [Author](#author)
 
 ## Lessons Learned
@@ -2208,6 +2209,210 @@ public class Student {
 - Similarly, for `char` there is a class called as `Character`. So, it is the box parameter class or the wrapper class.
 - It also has `MIN_VALUE` for `char` which is `\u0000` and the `MAX_VALUE` is `\0ffff`.
 - This is just for your information but, we will discuss the boxed primitive classes later on, in a different section.
+
+### Demo: Alternate Ways to Initialize char Variables
+
+- In the last lesson, we saw how a `char` variable canbe declared and intialized using a char literal.
+- That is the typical way of intializing a `char` variable.
+- We also saw that a `char` variable can be intialized using a unicode escape sequence, although that is not very common.
+- Now, a `char` variable can also be intialized using an `int` literal.
+- We know that a `char` variable value is internally represented using <ins>unsigned integer scheme</ins>.
+- Java also allows us to assign an unsigned integer to a `char` variable.
+- So, that is possible.
+- We know that unsigned integer has the range of 0 to 65,535 so, we can assign any value in that range to a `char` variable.
+- It is very uncommon but, we can do that.
+- So, let's go ahead and see what happens if we do that.
+- We will use our `BasicsDemo` class for it.
+  import java.math.BigDecimal;
+- In the `primitves()` method, let's declare a `char` variable called `charInt` and set its value to 65.
+- Since int literal can also be represented in different variations viz hexadecimal, binary, octal, let's do the same here.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  static void primitives() {
+    // other code
+
+    char charInt = 65;
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+  }
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+
+    // other code
+  }
+}
+```
+
+- Now let's compile and execute it.
+- Once the result is printed, you can notice that it is printing the character "A".
+- This is because in UTF-16, the decimal 65 corresponds to the uppercase letter A.
+- Same with hexadecimal, octal, and binary - since they all map to 65 and 65 maps to capital letter A - and this is just because the datatype is `char`.
+- Now, instead of setting `charInt`'s value to 65, let's set it to -1, what would it do?
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  static void primitives() {
+    // other code
+
+    char charInt = -1; // error
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+  }
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+
+    // other code
+  }
+}
+```
+
+- It gives us a compilation error: "possible lossy conversion from int to char".
+- This is because the range is 0 to 65,535, and -1 is out of range.
+- If you assign the value 65,536, it will again give you the same compilation error because, it is also an out of range assignment.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  static void primitives() {
+    // other code
+
+    char charInt = 65536; // error
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+  }
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+
+    // other code
+  }
+}
+```
+
+- And if you assign 0 then it means it is a null character so, it will not print anything.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  static void primitives() {
+    // other code
+
+    char charInt = 0; // null character
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+  }
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+
+    // other code
+  }
+}
+```
+
+- Now let's try and do the reverse. Let's create an `int` variable and assign a char value 'A'.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/BasicsDemo.java
+
+public class BasicsDemo {
+  // other code
+
+  static void primitives() {
+    // other code
+
+    char charInt = 0; // null character
+    System.out.println("charInt: " + charInt);
+
+    char charHex = 0x0041;
+    System.out.println("charHex: " + charHex);
+
+    char charBinary = 0b0100_0001;
+    System.out.println("charBinary: " + charBinary);
+
+    char charOctal = 0101;
+    System.out.println("charOctal: " + charOctal);
+
+    int intChar = 'A';
+    System.out.println("intChar: " + intChar);
+  }
+
+  public static void main(String[] args) {
+    // other code
+
+    primitives();
+
+    // other code
+  }
+}
+```
+
+- What do you think will be printed now?
+- Because the variable's type is `int` now, it should print the decimal value 65, and it does.
+- So, if you are assigning a char literal to an `int` it prints the corresponding UTF-16 `int` value.
+- And if you assign an int literal to a `char` data type then it prints the corresponding UTF-16 character value.
+- So, an int literal, we know can be assigned to `byte`, `short`, `int` but, it can also be assigned to `char` - this is very uncommon but, we need to be aware of this.
+- So, we have seen that a `char` variable can be initialized with a `char` literal, which is the most common case.
+- It can also be initialized with a unicode escape sequence, or it can also be initialized using an `int` literal.
+- Internally, it is stored as an unsigned integer whose range is 0 to 65,535, and you need to memorize that.
+- That's all there is to `char` datatype.
 
 ## Author
 
