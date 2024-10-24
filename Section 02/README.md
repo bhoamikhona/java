@@ -33,7 +33,7 @@
       - [Main Method](#main-method)
     - [Conclusion ~ Section 01](#conclusion--section-01)
       - [Summary](#summary)
-    - [Quiz](#quiz)
+    - [Quiz 01](#quiz-01)
     - [Important Q\&A Discussions](#important-qa-discussions)
       - [Can you please specify which programming languages are compiled to another programming languages? (Related to lesson on Compilation)](#can-you-please-specify-which-programming-languages-are-compiled-to-another-programming-languages-related-to-lesson-on-compilation)
       - [Why a single file cannot have more than one public class?](#why-a-single-file-cannot-have-more-than-one-public-class)
@@ -1014,7 +1014,7 @@ class GoodByeWorld {
 - Let's learn it really well so that we don't have to come back in future and re-learn it.
 - Let's do it well the very first time.
 
-### Quiz
+### Quiz 01
 
 ### Important Q&A Discussions
 

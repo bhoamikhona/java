@@ -51,6 +51,7 @@
     - [Primitive Variables: Character Data Type + Demo](#primitive-variables-character-data-type--demo)
     - [Demo: Alternate Ways to Initialize char Variables](#demo-alternate-ways-to-initialize-char-variables)
     - [Demo: Primitive Variables: Boolean Data Type](#demo-primitive-variables-boolean-data-type)
+  - [Quiz 02](#quiz-02)
   - [Author](#author)
 
 ## Lessons Learned
@@ -2589,6 +2590,8 @@ public class Student {
 - It can either take a `true` or a `false`.
 - So, we are done with looking at all of the primitive data types and there were 8 of them.
 - They are in-built into the Java language.
+
+## Quiz 02
 
 ## Author
 
