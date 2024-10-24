@@ -50,6 +50,7 @@
     - [Demo: Floating-Point Pitfalls](#demo-floating-point-pitfalls)
     - [Primitive Variables: Character Data Type + Demo](#primitive-variables-character-data-type--demo)
     - [Demo: Alternate Ways to Initialize char Variables](#demo-alternate-ways-to-initialize-char-variables)
+    - [Demo: Primitive Variables: Boolean Data Type](#demo-primitive-variables-boolean-data-type)
   - [Author](#author)
 
 ## Lessons Learned
@@ -2413,6 +2414,181 @@ public class BasicsDemo {
 - It can also be initialized with a unicode escape sequence, or it can also be initialized using an `int` literal.
 - Internally, it is stored as an unsigned integer whose range is 0 to 65,535, and you need to memorize that.
 - That's all there is to `char` datatype.
+
+### Demo: Primitive Variables: Boolean Data Type
+
+- So far we looked at 7 primitive types, of which 6 of them represent numbers, while one represent characters.
+- Now let's look at the final primitive data type that represents logical values, like `true` or `false`.
+- So, we have primitive type representing numbers, a primitive type for characters, and one for logical values and that final one is the boolean primitive type, and it can take either a `true` or `false` as value.
+- So, `true` or `false` are boolean literals.
+- Boolean is a binary data type, as it can take only one of the two values, `true` or `false`.
+- By default, a `boolean` variable is initialized with `false` - keep that in mind.
+- So, if you are not initializing a `boolean` variable, it gets `false` as its value.
+- Coming to bit depth, it is not precisely defined, and it is specific to particular JVM implementation.
+- So, it can vary from one JVM to another so, we need not worry about that.
+- It could be 1 byte or 4 bytes, or whatever the JVM chooses.
+- `boolean` variables are mostly used in control flow statements - which we will see in the next section but, as the name suggests, control flow statements are simply the statements that control the flow of your logic depending upon certain conditions.
+- These conditions are `boolean` conditions and they can be based on `boolean` variables.
+- One example is an `if` statement, and we will also look at `if` statement in the subsequent section.
+- In this lesson, we will see a simple `if` statement, so that we can see how a `boolean` variable can be used.
+- So, the `if` statement will use the `boolean` variable and it will see if the condition is `true` or `false`.
+- If it is `true`, then it will execute certain piece of code, otherwise it will not.
+- So, that's how the control will flow depending upon the condition.
+- We will use our `Student` class to implement this simple logic for computing the tuition fess that the student has to pay in a semester.
+- If the student is a local student, then the student would pay a certain fees but, if the student is an international student, then he/she would have to pay a higher fee.
+- So, let's go ahead and declare a `boolean` variable called `international` and initialize it to `true`.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+
+  boolean international = true;
+
+  void compute() {
+    // other code
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now let's define a variable called `tuitionFees` of type `double` and initialize it to `12000.0`.
+- Now let's declare one more variable called `internationalFee` of type `double` and set it equal to `5000.0` - this would be an additional amount, if the student is an international student.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+
+  boolean international = true;
+  double tuitionFees = 12000.0;
+  double internationalFees = 5000.0;
+
+  void compute() {
+    // other code
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now within the `compute()` method let's compute the tuition fees.
+- We are going to use an `if` statement.
+- It starts with the keyword `if` followed by a set of parentheses and a set of braces for the code body.
+- The condition that results to either `true` or `false` is placed within the set of parentheses, and the code that you want to happen when the condition is `true` is placed between the braces.
+
+```java
+// if statement syntax
+
+if (condition) {
+  // code to execute when condition is true
+}
+```
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+
+  boolean international = true;
+  double tuitionFees = 12000.0;
+  double internationalFees = 5000.0;
+
+  void compute() {
+    // other code
+
+    if (international == true) {
+      tuitionFees = tuitionFees + internationalFees;
+    }
+
+    System.out.println("tuitionFees: " + tuitionFees);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- There you go, it prints 17000.
+- `==` is what we call an equality operator, but we don't have do this: `international == true`.
+- If the value of `international` results to `true` then we don't have to explicitly check if it is `true`.
+- This works just the same:
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+
+  boolean international = true;
+  double tuitionFees = 12000.0;
+  double internationalFees = 5000.0;
+
+  void compute() {
+    // other code
+
+    if (international) {
+      tuitionFees = tuitionFees + internationalFees;
+    }
+
+    System.out.println("tuitionFees: " + tuitionFees);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now, we mentioned that the default value of a `boolean` variable is `false`.
+- So, let's check that out as well.
+- Now, if the condition evaluates to `false`, the code between the braces is skipped i.e. it will not be executed.
+
+```java
+// full code at ../javaindepth/src/com/semanticsquare/basics/Student.java
+
+public class Student {
+  // other code
+
+  boolean international; // default value is false
+  double tuitionFees = 12000.0;
+  double internationalFees = 5000.0;
+
+  void compute() {
+    // other code
+
+    if (international) {
+      tuitionFees = tuitionFees + internationalFees;
+    }
+
+    System.out.println("tuitionFees: " + tuitionFees);
+  }
+
+  public static void main(String[] args) {
+    Student s = new Student();
+    s.compute();
+  }
+}
+```
+
+- Now if we compile and run it, we get 12000 printed.
+- So, that's all there is to a boolean variable.
+- It can either take a `true` or a `false`.
+- So, we are done with looking at all of the primitive data types and there were 8 of them.
+- They are in-built into the Java language.
 
 ## Author
 

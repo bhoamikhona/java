@@ -14,6 +14,10 @@ public class Student {
 
   char degree = 'B';
 
+  boolean international = true;
+  double tuitionFees = 12000.0;
+  double internationalFees = 5000.0;
+
   void compute() {
     int nextId = id + 1;
 
@@ -28,6 +32,12 @@ public class Student {
     System.out.println("byteMaxValue: " + byteMaxValue);
     System.out.println("gpa: " + gpa);
     System.out.println("degree: " + degree);
+
+    if (international) {
+      tuitionFees = tuitionFees + internationalFees;
+    }
+
+    System.out.println("tuitionFees: " + tuitionFees);
   }
 
   public static void main(String[] args) {
